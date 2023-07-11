@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/modules/auth/auth.service';
 import { AuthFacebookService } from './auth-facebook.service';
 import { AuthFacebookLoginDto } from './dto/auth-facebook-login.dto';
-import { LoginResponseType } from '../auth/types/login-response.type';
+import { LoginResponseType } from '../../types/login-response.type';
 
 @ApiTags('Auth')
 @Controller({

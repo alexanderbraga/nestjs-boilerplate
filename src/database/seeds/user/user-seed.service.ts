@@ -5,7 +5,6 @@ import { UserStatusEnum } from 'src/modules/users/enums/status.enum';
 import { User } from 'src/modules/users/entities/user.entity';
 import { Repository } from 'typeorm';
 
-
 @Injectable()
 export class UserSeedService {
   constructor(

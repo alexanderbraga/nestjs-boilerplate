@@ -9,7 +9,7 @@ export class RoleSeedService {
   constructor(
     @InjectRepository(UserRole)
     private repository: Repository<UserRole>,
-  ) { }
+  ) {}
 
   async run() {
     const countUser = await this.repository.count({

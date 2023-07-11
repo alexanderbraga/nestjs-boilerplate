@@ -18,7 +18,7 @@ import { plainToClass } from 'class-transformer';
 import { UserStatus } from 'src/modules/users/entities/user-status.entity';
 import { UserRole } from 'src/modules/users/entities/user-role.entity';
 import { AuthProvidersEnum } from './auth-providers.enum';
-import { SocialInterface } from 'src/modules/social/interfaces/social.interface';
+import { SocialInterface } from 'src/modules/auth/social/interfaces/social.interface';
 import { AuthRegisterLoginDto } from './dto/auth-register-login.dto';
 import { UsersService } from 'src/modules/users/users.service';
 import { ForgotService } from 'src/modules/forgot/forgot.service';
@@ -32,7 +32,6 @@ import { JwtRefreshPayloadType } from './strategies/types/jwt-refresh-payload.ty
 import { Session } from 'src/modules/session/entities/session.entity';
 import { JwtPayloadType } from './strategies/types/jwt-payload.type';
 
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -42,7 +41,7 @@ export class AuthService {
     private sessionService: SessionService,
     private mailService: MailService,
     private configService: ConfigService<AllConfigType>,
-  ) { }
+  ) {}
 
   async validateLogin(
     loginDto: AuthEmailLoginDto,

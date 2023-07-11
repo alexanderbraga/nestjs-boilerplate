@@ -14,10 +14,10 @@ import appleConfig from './config/apple.config';
 import path from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthAppleModule } from './modules/auth-apple/auth-apple.module';
-import { AuthFacebookModule } from './modules/auth-facebook/auth-facebook.module';
-import { AuthGoogleModule } from './modules/auth-google/auth-google.module';
-import { AuthTwitterModule } from './modules/auth-twitter/auth-twitter.module';
+import { AuthAppleModule } from './modules/auth/social/apple/auth-apple.module';
+import { AuthFacebookModule } from './modules/auth/social/facebook/auth-facebook.module';
+import { AuthGoogleModule } from './modules/auth/social/google/auth-google.module';
+import { AuthTwitterModule } from './modules/auth/social/twitter/auth-twitter.module';
 import { I18nModule } from 'nestjs-i18n/dist/i18n.module';
 import { HeaderResolver } from 'nestjs-i18n';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
@@ -28,6 +28,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './modules/session/session.module';
 import { MailerModule } from './mailer/mailer.module';
+
 
 @Module({
   imports: [
