@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RoleEnum } from 'src/modules/roles/roles.enum';
-import { StatusEnum } from 'src/modules/statuses/statuses.enum';
+import { UserRoleEnum } from 'src/modules/users/enums/roles.enum';
+import { UserStatusEnum } from 'src/modules/users/enums/status.enum';
 import { User } from 'src/modules/users/entities/user.entity';
 import { Repository } from 'typeorm';
+
 
 @Injectable()
 export class UserSeedService {
@@ -16,7 +17,7 @@ export class UserSeedService {
     const countAdmin = await this.repository.count({
       where: {
         role: {
-          id: RoleEnum.admin,
+          id: UserRoleEnum.admin,
         },
       },
     });
@@ -27,13 +28,13 @@ export class UserSeedService {
           firstName: 'Super',
           lastName: 'Admin',
           email: 'admin@example.com',
-          password: 'secret',
+          password: 'password123',
           role: {
-            id: RoleEnum.admin,
+            id: UserRoleEnum.admin,
             name: 'Admin',
           },
           status: {
-            id: StatusEnum.active,
+            id: UserStatusEnum.active,
             name: 'Active',
           },
         }),
@@ -43,7 +44,7 @@ export class UserSeedService {
     const countUser = await this.repository.count({
       where: {
         role: {
-          id: RoleEnum.user,
+          id: UserRoleEnum.user,
         },
       },
     });
@@ -54,13 +55,13 @@ export class UserSeedService {
           firstName: 'John',
           lastName: 'Doe',
           email: 'john.doe@example.com',
-          password: 'secret',
+          password: 'password123',
           role: {
-            id: RoleEnum.user,
+            id: UserRoleEnum.user,
             name: 'Admin',
           },
           status: {
-            id: StatusEnum.active,
+            id: UserStatusEnum.active,
             name: 'Active',
           },
         }),

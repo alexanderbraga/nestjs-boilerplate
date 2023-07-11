@@ -4,13 +4,13 @@ import { Allow } from 'class-validator';
 import { EntityHelper } from 'src/utils/entity-helper';
 
 @Entity()
-export class Role extends EntityHelper {
+export class UserStatus extends EntityHelper {
   @ApiProperty({ example: 1 })
   @PrimaryColumn()
   id: number;
 
   @Allow()
-  @ApiProperty({ example: 'Admin' })
+  @ApiProperty({ example: 'Active' })
   @Column()
   name?: string;
 }

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Status } from 'src/modules/statuses/entities/status.entity';
+import { UserStatus } from 'src/modules/users/entities/user-status.entity';
 import { StatusSeedService } from './status-seed.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Status])],
+  imports: [TypeOrmModule.forFeature([UserStatus])],
   providers: [StatusSeedService],
   exports: [StatusSeedService],
 })
-export class StatusSeedModule {}
+export class StatusSeedModule { }

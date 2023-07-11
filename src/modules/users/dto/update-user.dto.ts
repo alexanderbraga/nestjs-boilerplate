@@ -3,9 +3,9 @@ import { CreateUserDto } from './create-user.dto';
 
 import { Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Role } from '../../roles/entities/role.entity';
+import { UserRole } from '../entities/user-role.entity';
 import { IsEmail, IsOptional, MinLength, Validate } from 'class-validator';
-import { Status } from 'src/modules/statuses/entities/status.entity';
+import { UserStatus } from 'src/modules/users/entities/user-status.entity';
 import { IsNotExist } from 'src/utils/validators/is-not-exists.validator';
 import { FileEntity } from 'src/modules/files/entities/file.entity';
 import { IsExist } from 'src/utils/validators/is-exists.validator';
@@ -45,19 +45,19 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   })
   photo?: FileEntity | null;
 
-  @ApiProperty({ type: Role })
+  @ApiProperty({ type: UserRole })
   @IsOptional()
   @Validate(IsExist, ['Role', 'id'], {
     message: 'roleNotExists',
   })
-  role?: Role | null;
+  role?: UserRole | null;
 
-  @ApiProperty({ type: Status })
+  @ApiProperty({ type: UserStatus })
   @IsOptional()
   @Validate(IsExist, ['Status', 'id'], {
     message: 'statusNotExists',
   })
-  status?: Status;
+  status?: UserStatus;
 
   hash?: string | null;
 }

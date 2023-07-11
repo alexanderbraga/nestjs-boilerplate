@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Status } from 'src/modules/statuses/entities/status.entity';
-import { StatusEnum } from 'src/modules/statuses/statuses.enum';
+import { UserStatus } from 'src/modules/users/entities/user-status.entity';
+import { UserStatusEnum } from 'src/modules/users/enums/status.enum';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class StatusSeedService {
   constructor(
-    @InjectRepository(Status)
-    private repository: Repository<Status>,
+    @InjectRepository(UserStatus)
+    private repository: Repository<UserStatus>,
   ) {}
 
   async run() {
@@ -17,11 +17,11 @@ export class StatusSeedService {
     if (!count) {
       await this.repository.save([
         this.repository.create({
-          id: StatusEnum.active,
+          id: UserStatusEnum.active,
           name: 'Active',
         }),
         this.repository.create({
-          id: StatusEnum.inactive,
+          id: UserStatusEnum.inactive,
           name: 'Inactive',
         }),
       ]);

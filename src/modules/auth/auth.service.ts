@@ -11,12 +11,12 @@ import bcrypt from 'bcryptjs';
 import { AuthEmailLoginDto } from './dto/auth-email-login.dto';
 import { AuthUpdateDto } from './dto/auth-update.dto';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
-import { RoleEnum } from 'src/modules/roles/roles.enum';
-import { StatusEnum } from 'src/modules/statuses/statuses.enum';
+import { UserStatusEnum } from 'src/modules/users/enums/status.enum';
+import { UserRoleEnum } from '../users/enums/roles.enum';
 import crypto from 'crypto';
 import { plainToClass } from 'class-transformer';
-import { Status } from 'src/modules/statuses/entities/status.entity';
-import { Role } from 'src/modules/roles/entities/role.entity';
+import { UserStatus } from 'src/modules/users/entities/user-status.entity';
+import { UserRole } from 'src/modules/users/entities/user-role.entity';
 import { AuthProvidersEnum } from './auth-providers.enum';
 import { SocialInterface } from 'src/modules/social/interfaces/social.interface';
 import { AuthRegisterLoginDto } from './dto/auth-register-login.dto';
@@ -32,6 +32,7 @@ import { JwtRefreshPayloadType } from './strategies/types/jwt-refresh-payload.ty
 import { Session } from 'src/modules/session/entities/session.entity';
 import { JwtPayloadType } from './strategies/types/jwt-payload.type';
 
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -41,7 +42,7 @@ export class AuthService {
     private sessionService: SessionService,
     private mailService: MailService,
     private configService: ConfigService<AllConfigType>,
-  ) {}
+  ) { }
 
   async validateLogin(
     loginDto: AuthEmailLoginDto,
@@ -54,7 +55,7 @@ export class AuthService {
     if (
       !user ||
       (user?.role &&
-        !(onlyAdmin ? [RoleEnum.admin] : [RoleEnum.user]).includes(
+        !(onlyAdmin ? [UserRoleEnum.admin] : [UserRoleEnum.user]).includes(
           user.role.id,
         ))
     ) {
@@ -140,11 +141,11 @@ export class AuthService {
     } else if (userByEmail) {
       user = userByEmail;
     } else {
-      const role = plainToClass(Role, {
-        id: RoleEnum.user,
+      const role = plainToClass(UserRole, {
+        id: UserRoleEnum.user,
       });
-      const status = plainToClass(Status, {
-        id: StatusEnum.active,
+      const status = plainToClass(UserStatus, {
+        id: UserStatusEnum.active,
       });
 
       user = await this.usersService.create({
@@ -206,11 +207,11 @@ export class AuthService {
       ...dto,
       email: dto.email,
       role: {
-        id: RoleEnum.user,
-      } as Role,
+        id: UserRoleEnum.user,
+      } as UserRole,
       status: {
-        id: StatusEnum.inactive,
-      } as Status,
+        id: UserStatusEnum.inactive,
+      } as UserStatus,
       hash,
     });
 
@@ -238,8 +239,8 @@ export class AuthService {
     }
 
     user.hash = null;
-    user.status = plainToClass(Status, {
-      id: StatusEnum.active,
+    user.status = plainToClass(UserStatus, {
+      id: UserStatusEnum.active,
     });
     await user.save();
   }
