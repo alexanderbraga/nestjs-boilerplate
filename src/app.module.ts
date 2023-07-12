@@ -1,7 +1,4 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './modules/users/users.module';
-import { FilesModule } from './modules/files/files.module';
-import { AuthModule } from './modules/auth/auth.module';
 import databaseConfig from './config/database.config';
 import authConfig from './config/auth.config';
 import appConfig from './config/app.config';
@@ -12,6 +9,10 @@ import googleConfig from './config/google.config';
 import twitterConfig from './config/twitter.config';
 import appleConfig from './config/apple.config';
 import path from 'path';
+
+import { UsersModule } from './modules/user/users.module';
+import { FilesModule } from './modules/files/files.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthAppleModule } from './modules/auth/social/apple/auth-apple.module';
@@ -28,7 +29,6 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './modules/session/session.module';
 import { MailerModule } from './mailer/mailer.module';
-
 
 @Module({
   imports: [

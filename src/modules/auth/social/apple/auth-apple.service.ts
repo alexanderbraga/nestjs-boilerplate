@@ -6,7 +6,6 @@ import { AllConfigType } from 'src/config/config.type';
 import { SocialInterface } from '../interfaces/social.interface';
 import { AuthAppleLoginDto } from './dto/auth-apple-login.dto';
 
-
 @Injectable()
 export class AuthAppleService {
   constructor(private configService: ConfigService<AllConfigType>) {}

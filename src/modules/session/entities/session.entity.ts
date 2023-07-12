@@ -7,7 +7,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { EntityHelper } from 'src/utils/entity-helper';
-import { User } from 'src/modules/users/entities/user.entity';
+import { User } from 'src/modules/user/entities/user.entity';
 
 @Entity()
 export class Session extends EntityHelper {

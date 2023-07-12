@@ -4,7 +4,7 @@ import { FindOptions } from 'src/utils/types/find-options.type';
 import { DeepPartial, Not, Repository } from 'typeorm';
 import { Session } from './entities/session.entity';
 import { NullableType } from '../../utils/types/nullable.type';
-import { User } from 'src/modules/users/entities/user.entity';
+import { User } from 'src/modules/user/entities/user.entity';
 
 @Injectable()
 export class SessionService {

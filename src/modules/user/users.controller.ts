@@ -18,10 +18,10 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/modules/users/roles/roles.decorator';
+import { Roles } from 'src/modules/user/roles/roles.decorator';
 
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'src/modules/users/roles/roles.guard';
+import { RolesGuard } from 'src/modules/user/roles/roles.guard';
 import { infinityPagination } from 'src/utils/infinity-pagination';
 import { User } from './entities/user.entity';
 import { InfinityPaginationResultType } from '../../utils/types/infinity-pagination-result.type';
@@ -31,9 +31,9 @@ import { UserRoleEnum } from './enums/roles.enum';
 @ApiBearerAuth()
 @Roles(UserRoleEnum.admin)
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-@ApiTags('Users')
+@ApiTags('User')
 @Controller({
-  path: 'users',
+  path: 'user',
   version: '1',
 })
 export class UsersController {
@@ -51,7 +51,7 @@ export class UsersController {
   @SerializeOptions({
     groups: ['admin'],
   })
-  @Get()
+  @Get('/list')
   @HttpCode(HttpStatus.OK)
   async findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
