@@ -29,9 +29,13 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './modules/session/session.module';
 import { MailerModule } from './mailer/mailer.module';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
 
 @Module({
   imports: [
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production'
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
@@ -90,4 +94,4 @@ import { MailerModule } from './mailer/mailer.module';
     HomeModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
