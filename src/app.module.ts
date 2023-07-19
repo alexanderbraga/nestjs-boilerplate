@@ -34,7 +34,7 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
 @Module({
   imports: [
     DevtoolsModule.register({
-      http: process.env.NODE_ENV !== 'production'
+      http: process.env.NODE_ENV !== 'production',
     }),
     ConfigModule.forRoot({
       isGlobal: true,
@@ -94,4 +94,4 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
     HomeModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
